@@ -15,8 +15,10 @@ li $s0,1 # the number multiplying the final sum by
 # A-P ascii: 65-80
 # a-p ascii: 91-112
 loop:
+lb $t1,0($a0) # load character at this of string into $t0
+addi $a0,$a0,1 # increment the address in $a0 by one to move onto next character
 
 
 
-li $v0,4 # exit program
+li $v0,10 # exit program
 syscall
