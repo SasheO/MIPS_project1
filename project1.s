@@ -31,7 +31,14 @@ loop:
         j add_to_running_sum # j to segment of loop that adds char value to value of $t9, the running sum
     
     check_a_to_p:
+        li $s1,'p' # store ascii value of char p --> UPPER LIMIT
+        addi $s1,$s1,1 # increment by one so that you can check for value 'p', not only < 'p' with slti in check_a_to_p
+        slti $t0,$t1,'a' # the string char in $t1 should be greater than or equal to 'a' char i.e. $t0 should be 0
+        bne $t0,$zero,check_A_to_P # if $t0 not 0, do the next check
+        slt $t0,$t1,$s1 # check if character <= ascii code for 'p' # the string char in $t1 should be less than or equal to 'p' char i.e. $t0 should be 1
+
     check_A_to_P:
+        # if none of the conditions pass, jump back to the beginning of the loop
 
     add_to_running_sum:
         addu $t9,$t9,$t1
