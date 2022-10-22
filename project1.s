@@ -13,7 +13,6 @@ li $t9,0 # $t9 will store final value of sum
 
 
 # A-P ascii: 65-80
-# a-p ascii: 91-112
 
 loop:
     lb $t1,0($a0) # load character at this of string into $t1
@@ -36,6 +35,9 @@ loop:
         slti $t0,$t1,'a' # the string char in $t1 should be greater than or equal to 'a' char i.e. $t0 should be 0
         bne $t0,$zero,check_A_to_P # if $t0 not 0, do the next check
         slt $t0,$t1,$s1 # check if character <= ascii code for 'p' # the string char in $t1 should be less than or equal to 'p' char i.e. $t0 should be 1
+        beq $t0,$zero,check_A_to_P # if $t0 0 instead of 1, do the next check
+        addi $t1,$t1,-87 # convert ascii value to integer (a-p ascii: 97-112; a-p here: 10-25)
+        j add_to_running_sum # j to segment of loop that adds char value to value of $t9, the running sum
 
     check_A_to_P:
         # if none of the conditions pass, jump back to the beginning of the loop
