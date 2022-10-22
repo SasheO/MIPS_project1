@@ -16,7 +16,7 @@ li $t9,0 # $t9 will store final value of sum
 
 loop:
     lb $t1,0($a0) # load character at this of string into $t1
-    beq $t1,$zero, exit_loop # if null character is read, leave the loop
+    beq $t1,$zero,exit_loop # if null character is read, leave the loop
     addi $a0,$a0,1 # increment the address in $a0 by one to move onto next character
 
     check_0_to_9:
