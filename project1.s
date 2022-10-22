@@ -16,6 +16,7 @@ li $s0,1 # the number multiplying the final sum by
 # a-p ascii: 91-112
 
 loop:
+    li $t9,0 # $t9 will store final value of sum
     lb $t1,0($a0) # load character at this of string into $t0
     beq $t1,$zero, exit_loop # if null character is read, leave the loop
     addi $a0,$a0,1 # increment the address in $a0 by one to move onto next character
@@ -31,7 +32,10 @@ loop:
 
 
 exit_loop:
-
+mult $t9,$t9,$s0 # store product of sum and number in $t9 
+li $v0,1 # print integer
+add $a0,$t9,$zero # move final value as argument
+syscall
 
 li $v0,10 # exit program
 syscall
