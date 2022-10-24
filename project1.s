@@ -1,5 +1,5 @@
 .data
-input_str: .space 11 # reserve 11 bytes for input_str
+input_str: .space 11 # reserve 11 bytes for input_str including null char terminating string
 
 .text
 main:
@@ -10,7 +10,6 @@ li $a1, 11 # number of input characters including null char
 syscall
 
 li $t9,0 # $t9 will store final value of sum
-
 
 # A-P ascii: 65-80
 
