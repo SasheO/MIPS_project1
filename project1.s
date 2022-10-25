@@ -16,7 +16,7 @@ li $t9,0 # $t9 will store final value of sum
 loop:
     lb $t1,0($a0) # load character at this of string into $t1
     beq $t1,$zero,exit_loop # if null character is read, leave the loop
-    addi $a0,$a0,1 # increment the address in $a0 by one to move onto next character
+    addi $a0,$a0,1 # increment the address in $a0 by one to move onto next character in the next loop
 
     check_0_to_9:
         li $s1,'9' # store ascii value of char 9 --> UPPER LIMIT
@@ -45,7 +45,7 @@ loop:
         slti $t0,$t1,'A' # the string char in $t1 should be greater than or equal to 'A' char i.e. $t0 should be 0
         bne $t0,$zero,loop # if $t0 not 0, repeat the loop for the next letter
         slt $t0,$t1,$s1 # check if character <= ascii code for 'P' # the string char in $t1 should be less than or equal to 'P' char i.e. $t0 should be 1
-        beq $t0,$zero,check_A_to_P # if $t0 0 instead of 1, do the next check
+        beq $t0,$zero,loop # if $t0 0 instead of 1, do the next check
         addi $t1,$t1,-55 # convert ascii value to integer (A-P ascii: 65-80; A-P here: 10-25)
 
     add_to_running_sum:
