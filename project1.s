@@ -43,10 +43,10 @@ loop:
         j add_to_running_sum # j to segment of loop that adds char value to value of $t9, the running sum
 
     check_A_to_P:
-        slti $t0,$t1,'A' # the string char in $t1 should be greater than or equal to 'A' char i.e. $t0 should be 0
+        slti $t0,$t1,65 # the string char in $t1 should be greater than or equal to 'A' char i.e. $t0 should be 0
         bne $t0,$zero,loop # if $t0 not 0, repeat the loop for the next char
         
-        li $s1,'P' # store ascii value of char P --> UPPER LIMIT
+        li $s1,80 # store ascii value of char P --> UPPER LIMIT
         addi $s1,$s1,1 # increment by one so that you can check for value 'P', not only < 'P' with slti in check_A_to_P
         slt $t0,$t1,$s1 # check if character <= ascii code for 'P' # the string char in $t1 should be less than or equal to 'P' char i.e. $t0 should be 1
         beq $t0,$zero,loop # if $t0 0 instead of 1, repeat the loop for the next char
